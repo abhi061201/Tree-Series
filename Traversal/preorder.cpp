@@ -13,6 +13,52 @@ TC-O(n)
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+ 
+ 
+ /**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+ very easy approach can done all iterative by this
+ iterative by raveet sir
+ 
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        if(!root)return {};
+        stack<pair<TreeNode* , int>> st;
+        vector<int>ans;
+        st.push({root,0});
+        while(!st.empty()){
+            TreeNode* cur= st.top().first;
+            int state= st.top().second;
+            st.pop();
+            if(!cur)continue;
+            if(state==0){
+                ans.push_back(cur->val);
+                st.push({cur,1});
+            }
+            else if(state==1){
+                st.push({cur,2});
+                st.push({cur->left,0});
+            }
+            else {
+                st.push({cur->right,0});
+            }
+            
+        }
+        return ans;
+    }
+};
+
+Iterative striver
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {

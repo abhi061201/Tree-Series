@@ -32,3 +32,24 @@ public:
         
     }
 };
+TC- O(3N)
+SC=O(1)
+
+
+class Solution {
+public:
+    TreeNode* bstFromPreorder(vector<int>& pre) {
+        int i=0;
+        return go(i,pre, 1e9 );
+        
+    }
+    TreeNode * go(int &i, vector<int>&pre, int up){
+        if(i==pre.size()|| pre[i] > up){
+            return NULL;
+        }
+        TreeNode* root= new TreeNode(pre[i++]);
+        root->left= go(i, pre, root->val);
+        root->right= go(i, pre, up);
+        return root;
+    }
+};

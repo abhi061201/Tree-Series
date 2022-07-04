@@ -1,3 +1,37 @@
+Approach 1
+
+      Hme agr null k baad bhi queue m element mill rhe h to complete tree nhi hoga vo
+      
+      
+class Solution {
+public:
+    bool isCompleteTree(TreeNode* root) {
+        
+        if(!root)return 1;
+        queue<TreeNode*>q; 
+        q.push(root); 
+        bool nullmila= false;
+        while(!q.empty()){
+            TreeNode* cur=q.front();
+            q.pop();
+            if(!cur){
+                nullmila=true;
+            }
+            else {
+                if(nullmila)return false;
+                q.push(cur->left);
+                q.push(cur->right);
+            }
+        }
+        return true;
+        
+    }
+};
+
+
+
+
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -43,3 +77,8 @@ public:
 
         
 };
+
+
+
+
+
